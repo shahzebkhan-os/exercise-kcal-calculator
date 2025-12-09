@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exercise Calorie Burn Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>Exercise kcal Calculator</h1>
+      <p>Live calories vs time graph with adjustable weight, speed, incline & exercises.</p>
+    </header>
+
+    <main class="main">
+      <!-- CONTROLS -->
+      <section class="controls">
+        <h2>Inputs</h2>
+
+        <label class="field">
+          <span>Profile (from PDF data)</span>
+          <select id="profileSelect">
+            <option value="custom">Custom (use my weight)</option>
+            <option value="jeremy">Jeremy (PDF)</option>
+            <option value="kevin">Kevin (PDF)</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Exercise</span>
+          <select id="exerciseSelect">
+            <option value="treadmill">Treadmill / Running (MET based)</option>
+            <option value="sprints">Sprints (PDF)</option>
+            <option value="devils_press">Devil's Press (PDF)</option>
+            <option value="boxing">Boxing (PDF)</option>
+            <option value="burpees">Burpees (PDF)</option>
+            <option value="assault_bike">Assault Bike (PDF)</option>
+            <option value="squat_jumps">Squat Jumps (PDF)</option>
+            <option value="jump_ins">Jump-Ins (PDF)</option>
+            <option value="incline_walking">Incline Walking (PDF)</option>
+            <option value="elliptical">Elliptical (PDF)</option>
+            <option value="stairmaster">Stairmaster (PDF)</option>
+            <!-- You can extend this list with more exercises from your PDF -->
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Your weight (kg)</span>
+          <input type="number" id="weightInput" min="30" max="200" value="75" />
+        </label>
+
+        <label class="field">
+          <span>Duration (minutes)</span>
+          <input type="range" id="durationInput" min="5" max="120" value="30" />
+          <div class="value" id="durationValue">30 min</div>
+        </label>
+
+        <!-- TREADMILL-SPECIFIC CONTROLS -->
+        <div id="treadmillControls">
+          <h3>Treadmill / Running settings</h3>
+
+          <label class="field">
+            <span>Speed (km/h)</span>
+            <input type="range" id="speedInput" min="4.0" max="16.0" step="0.5" value="8.0" />
+            <div class="value" id="speedValue">8.0 km/h</div>
+          </label>
+
+          <label class="field">
+            <span>Incline (%)</span>
+            <input type="range" id="inclineInput" min="0" max="15" step="1" value="0" />
+            <div class="value" id="inclineValue">0%</div>
+          </label>
+        </div>
+
+        <button id="resetBtn" class="btn">Reset Defaults</button>
+      </section>
+
+      <!-- OUTPUT / GRAPH -->
+      <section class="output">
+        <div class="cards">
+          <div class="card">
+            <h3>Calories / minute</h3>
+            <p id="kcalPerMin">0.0 kcal</p>
+          </div>
+          <div class="card">
+            <h3>Total calories</h3>
+            <p id="totalKcal">0 kcal</p>
+          </div>
+        </div>
+
+        <div class="chart-wrapper">
+          <canvas id="kcalChart"></canvas>
+        </div>
+
+        <p class="note">
+          Reference kcal/min values for many exercises are taken from your uploaded PDF
+          charts (Jeremy & Kevin). :contentReference[oaicite:1]{index=1}
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Made by Shahzeb – hosted with GitHub Pages.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
